@@ -1,15 +1,11 @@
-
-FROM python:3
-
-RUN apt-get update -y && \
-apt-get install -y python3-pip \
-python-dev
-
-WORKDIR /app
-
-RUN pip install Flask
-COPY . .
-
-EXPOSE 5000
-
-CMD ["python", "./app.py"]
+FROM python:3.7-slim
+RUN pip install flask
+RUN pip install flask-mysql
+RUN mkdir templates
+RUN mkdir static
+COPY t8.py /app.py
+COPY templates/*  /templates/
+COPY static/*  /static/
+RUN chmod -R a+rwx static
+RUN chmod -R a+rwx templates
+CMD ["python","app.py"]
