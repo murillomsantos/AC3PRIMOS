@@ -4,7 +4,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/primos')
+@app.route('/')
 def primos():
     primos = []
     num = 2
